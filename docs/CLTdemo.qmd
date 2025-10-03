@@ -1,9 +1,9 @@
 ---
 title: "CLT Demo"
 subtitle: "The Central Limit Theorem in Action"
-author: "Boris Steipe"
+author: "Boris Steipe (with Wenzel Wohlgemut)"
 date: last-modified      
-version: "v 1.0"
+version: "Test"
 format:
   html:
     toc: true
@@ -96,7 +96,7 @@ hist(x,
 # between -0.05 and 0.05 added to each number in x. These are vectorized
 # operations in R - they are fast. Then we overlay the new histogram.
 x <- x + rowSums(matrix(runif(n*100, -0.05, 0.05), nrow=n))
-hist(x[x>xi & x<xa], breaks = brk, col = "#FF00AA33", add=TRUE)
+hist(x[x>xi & x<xa], breaks = brk, col = "#0099FF33", add=TRUE)
 
 # Note: for display we clip the values to lie between the bounds we are
 #       considering for our histogram: x[x>xi & x<xa]. If we don't
@@ -106,15 +106,15 @@ hist(x[x>xi & x<xa], breaks = brk, col = "#FF00AA33", add=TRUE)
 
 # We repeat this with 200 perturbations ...
 x <- x + rowSums(matrix(runif(n*200, -0.05, 0.05), nrow=n))
-hist(x[x>xi & x<xa], breaks = brk, col = "#FF009944", add=TRUE)
+hist(x[x>xi & x<xa], breaks = brk, col = "#00AABB44", add=TRUE)
 
 # ... 500 ...
 x <- x + rowSums(matrix(runif(n*500, -0.05, 0.05), nrow=n))
-hist(x[x>xi & x<xa], breaks = brk, col = "#FF005555", add=TRUE)
+hist(x[x>xi & x<xa], breaks = brk, col = "#00CC9955", add=TRUE)
 
 # ... and 1,000. That's our final histogram.
 x <- x + rowSums(matrix(runif(n*1000, -0.05, 0.05), nrow=n))
-hist(x[x>xi & x<xa], breaks = brk, col = "#FF001166", add=TRUE)
+hist(x[x>xi & x<xa], breaks = brk, col = "#00FF4466", add=TRUE)
 ```
 
 As you can see, the perturbations cause the distribution to become rounded, with a peak at the mean of the original distribution: at 0.5.  However these are the "same" 5,000 points we started with, we just added a few random positive and negative numbers to each of them.
@@ -128,7 +128,7 @@ Are the 5,000 values now normally distributed?
 
 # assign the hist() output to myH, so we can get at the values with which
 # the plot was constructed.
-myH <- hist(x[x>xi & x<xa], breaks = brk, col = "#FF001166",
+myH <- hist(x[x>xi & x<xa], breaks = brk, col = "#00FF7744",
             freq = FALSE,
             main = "Histogram of Perturbed Values",
             xlab = "", ylab = "F",
@@ -137,9 +137,9 @@ myH <- hist(x[x>xi & x<xa], breaks = brk, col = "#FF001166",
 points(myH$mids,  # using the histogram-bin midpoints as the x-values of
                   # our curve, and computing the y-values with dnorm()
        dnorm(myH$mids, mean = mean(x), sd = sd(x)),
-       col = "#AA0000",
+       col = "#00DD44",
        type = "l",
-       lwd = 2)
+       lwd = 3)
 ```
 
 The `points()` function overlays points over a previous plot, the parameter
